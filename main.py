@@ -1,7 +1,6 @@
 import tkinter as tk
 import mysql.connector
 import bcrypt
-import time
 import anasayfa
 import os
 from dotenv import load_dotenv
