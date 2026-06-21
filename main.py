@@ -1,6 +1,7 @@
 import tkinter as tk
 import anasayfa
 import requests
+import json
 
 print("hello")
 
@@ -22,13 +23,17 @@ def sorgu(kullanıcı, sifre):
 
         print(cevap.status_code)
         print(cevap.json())
-
+        with open("token.json","w", encoding="utf-8") as jsn:
+            print("token yazılıyor")
+            json.dump(cevap.json(), jsn, ensure_ascii=False, indent=4)
         if cevap.status_code == 200:
             sonuc = cevap.json()
             print(sonuc)
 
             if sonuc.get("status") == "success":
                 print("Giriş başarılı")
+                pencere.destroy()
+                anasayfa.app()
             else:
                 print("Giriş başarısız")
         else:
@@ -55,7 +60,7 @@ def kaydet_post(kullanıcı,sifre,tekrar,mail):
             print(sonuc)
 
             if sonuc.get("status") == "success":
-                print("Giriş başarılı")
+                print("başarılı")
             else:
                 print("Giriş başarısız")
         else:
@@ -192,7 +197,5 @@ label_2.pack()
 entry_1.pack()
 button_0.pack()
 button_1.pack()
-
-x = 0
 
 pencere.mainloop()
